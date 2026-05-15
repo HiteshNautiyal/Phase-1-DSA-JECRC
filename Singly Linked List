@@ -1,0 +1,110 @@
+Ques: Structure of Node , insertion at start & end, display , Deletetion at end ?
+Ans:
+#include <iostream>
+using namespace std;
+//structure of Node
+class Node
+{
+  public:
+  int value;
+  Node *next;
+  
+  Node(int v)
+  {
+    value = v;
+    next = NULL;
+  }
+};
+
+
+void insertAtStart(Node*&head, Node*&tail, int v)
+{
+  if (head == NULL)
+  {
+    Node *n = new Node(v);
+    head = tail = n;
+  }
+  else
+  {
+    Node*n = new Node(v);
+    n->next = head;
+    head = n;
+  }
+}
+
+void display(Node *head)
+{
+  Node *temp = head;
+  while(temp != NULL)
+  {
+    cout<<temp->value<<" ";
+    temp = temp->next;
+  }
+}
+
+void insertAtEnd(Node *&head, Node *&tail, int v)
+{
+  if(head == NULL)
+  {
+    Node *n = new Node(v);
+    head = tail = n;
+  }
+  else
+  {
+    Node *n  = new Node(v);
+    tail->next = n;
+    tail = n;
+  }
+}
+
+void deleteAtFirst(Node *&head, Node *&tail)
+{
+  if(head == NULL)
+  {
+    return;
+  }
+  else
+  {
+    Node *n = head->next;
+    delete head;
+    head = n;
+  }
+}
+
+void deleteAtEnd(Node *&head, Node*&tail)
+{
+  if(head == NULL)
+  {
+    return;
+  }
+  else
+  {
+    Node *temp = head;
+    while(temp->next != tail)
+    {
+      temp = temp->next;
+    }
+    delete tail;
+    temp->next =NULL;
+    tail = temp;
+  }
+}
+int main() 
+{
+  Node *head, *tail;
+  
+  head = tail = NULL;
+  
+  insertAtEnd(head,tail,1);
+  insertAtEnd(head,tail,2);
+  insertAtEnd(head,tail,3);
+  
+  deleteAtEnd(head,tail);
+  
+  display(head);
+  
+  
+    
+    return 0;
+}
+***********************************************************************************************************************************************************
